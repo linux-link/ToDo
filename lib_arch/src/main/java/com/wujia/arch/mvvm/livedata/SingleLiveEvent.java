@@ -1,5 +1,7 @@
 package com.wujia.arch.mvvm.livedata;
 
+import android.os.Looper;
+
 import androidx.annotation.MainThread;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
@@ -45,6 +47,10 @@ public class SingleLiveEvent<T> extends MutableLiveData<T> {
      */
     @MainThread
     public void call() {
-        setValue(null);
+        if (Thread.currentThread().getId() == Looper.getMainLooper().getThread().getId()) {
+            setValue(null);
+        } else {
+            postValue(null);
+        }
     }
 }

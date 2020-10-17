@@ -1,0 +1,10 @@
+<resources>
+    <string name="lg_app_name">ct_login</string>
+    <string name="lg_login_contract_hint">新手机号将自动注册，请详读<font color='#7EC67C'>隐私政策、使用协议</font></string>
+    <string name="lg_login_phone_hint">验证码已发送至：</string>
+    <string name="lg_login_code_hint">秒后重新获取</string>
+    <string name="lg_login_title_hint">手机号登录/注册</string>
+    <string name="lg_et_phone_hint">请输入手机号</string>
+    <string name="lg_login_btn_text">获取短信验证码</string>
+    <string name="lg_sms_title_hint">输入验证码</string>
+</resources>

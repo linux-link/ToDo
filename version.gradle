@@ -8,8 +8,11 @@ builds.name = "1.0.0"
 ext.builds = builds
 
 def addRepos(RepositoryHandler handler) {
+    handler.mavenLocal()
     handler.google()
     handler.jcenter()
+    handler.maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
+
 }
 
 ext.addRepos = this.&addRepos
@@ -70,10 +73,11 @@ deps.google = google
 
 deps.gson = "com.google.code.gson:gson:2.8.6"
 deps.gradle = "com.android.tools.build:gradle:4.1.0"
+deps.bmob = 'cn.bmob.android:bmob-sdk:3.6.6'
 
 /**************************************************************************************************/
 deps.libs = [
-        ':lib_res',':lib_ct_base',':lib_arch'
+        ':lib_res', ':lib_ct_base', ':lib_arch'
 ]
 
 deps.dependencies = [
@@ -86,8 +90,8 @@ deps.dependencies = [
         deps.lifecycle.extensions,
         deps.paging.runtime,
         deps.google.material,
-        deps.gson,
         deps.arouter.api,
+        deps.bmob
 ]
 
 deps.arch = [

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ClearEditText">
+        <attr name="clearIcon" format="reference" />
+        <attr name="scaleSize" format="float" />
+        <attr name="drawableWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="StateButton">
+        <attr name="state_normal" format="reference" />
+        <attr name="state_pressed" format="reference" />
+        <attr name="state_disable" format="reference" />
+        <attr name="state_other" format="reference" />
+        <attr name="default_state">
+            <enum name="disable" value="0" />
+            <enum name="normal" value="1" />
+            <enum name="pressed" value="2" />
+            <enum name="other" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TabLayout">
+        <attr name="indicatorStartColor" format="color|reference" />
+        <attr name="indicatorEndColor" format="color|reference" />
+        <attr name="indicatorMarginStart" format="dimension|reference" />
+        <attr name="indicatorMarginEnd" format="dimension|reference" />
+        <attr name="indicatorMarginBottom" format="dimension|reference" />
+    </declare-styleable>
+</resources>
