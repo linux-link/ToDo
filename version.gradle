@@ -81,6 +81,7 @@ deps.dependencies = [
         deps.androidx.recyclerview,
         deps.androidx.ktx,
         deps.androidx.appcompat,
+        deps.androidx.constraint,
         deps.lifecycle.viewmodel_ktx,
         deps.lifecycle.extensions,
         deps.paging.runtime,

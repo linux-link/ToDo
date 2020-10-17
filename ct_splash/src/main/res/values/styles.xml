@@ -1,10 +1,4 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="SpAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/news_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/news_colorPrimaryDark</item>
-        <item name="colorAccent">@color/news_colorAccent</item>
-    </style>
 
     <style name="SpLauncher" parent="SpAppTheme">
         <item name="android:windowFullscreen">true</item>

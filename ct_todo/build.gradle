@@ -12,10 +12,10 @@ apply from: '../upload.gradle'
 android {
     compileSdkVersion builds.compile
     buildToolsVersion builds.buildTools
-    resourcePrefix "sp_"
+    resourcePrefix "todo_"
     defaultConfig {
         if (isRunAlone.toBoolean()) {
-            applicationId "com.wujia.todo.splash"
+            applicationId "com.wujia.todo.home"
         }
         minSdkVersion builds.min
         targetSdkVersion builds.target
@@ -73,7 +73,6 @@ android {
 }
 
 dependencies {
-    implementation(name: 'mimo-ad-sdk', ext: 'aar')
     kapt deps.arouter.compiler
     implementation deps.dependencies
     deps.libs.each {

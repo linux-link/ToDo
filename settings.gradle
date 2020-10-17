@@ -1,6 +1,9 @@
 include ':lib_res'
-include ':lib_ct_base'
 include ':lib_arch'
+include ':lib_ct_base'
 include ':ct_splash'
+include ':ct_todo'
+include ':ct_plan'
+include ':ct_mine'
 include ':app'
 rootProject.name = "ToDo"
