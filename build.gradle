@@ -1,0 +1,18 @@
+buildscript {
+    apply from : 'version.gradle'
+    addRepos(repositories)
+
+    dependencies {
+        classpath deps.gradle
+        classpath deps.kotlin.plugin
+        classpath deps.arouter.plugin
+    }
+}
+
+allprojects {
+    addRepos(repositories)
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

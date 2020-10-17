@@ -1,0 +1,6 @@
+include ':lib_res'
+include ':lib_ct_base'
+include ':lib_arch'
+include ':ct_splash'
+include ':app'
+rootProject.name = "ToDo"
