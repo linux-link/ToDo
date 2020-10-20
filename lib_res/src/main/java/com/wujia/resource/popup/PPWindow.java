@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -29,10 +30,10 @@ public class PPWindow implements PopupWindow.OnDismissListener {
     private static final float DEFAULT_ALPHA = 0.7f;
 
     private int mWidth, mHeight;
-    private boolean mIsFocusable;
+    private boolean mIsFocusable = true;
     private int mContentLayoutId;
     private View mContentView;
-    private boolean mIsOutsideTouchable;
+    private boolean mIsOutsideTouchable = true;
     private int mAnimationStyle;
     private boolean mClippingEnable = true;
     private boolean mIgnoreCheekPress;
@@ -42,22 +43,24 @@ public class PPWindow implements PopupWindow.OnDismissListener {
     private boolean mTouchable = true;
     private View.OnTouchListener mOnTouchListener;
     // 弹出PopWindow 背景是否变暗，默认不会变暗。
-    private boolean mIsBackgroundDark;
+    private boolean mDarken;
     // 背景变暗的值，0 - 1
     private float mBackgroundDarkValue = 0;
     // 设置是否允许点击 PopupWindow之外的地方，关闭PopupWindow
-    private boolean mEnableOutsideTouchDisMiss = true;
+    private boolean mTouchDismiss = true;
+    private boolean mCoverAnchor;
+    private int mGravity;
 
     private PopupWindow mPopupWindow;
     private Context mContext;
     private Window mWindow;
 
-    public void initView() {
+    private void initView() {
         if (mContentView == null) {
             mContentView = LayoutInflater.from(mContext).inflate(mContentLayoutId, null);
         }
         Activity activity = (Activity) mContentView.getContext();
-        if (activity != null && mIsBackgroundDark) {
+        if (activity != null && mDarken) {
             final float alpha = (mBackgroundDarkValue > 0 && mBackgroundDarkValue < 1) ? mBackgroundDarkValue : DEFAULT_ALPHA;
             mWindow = activity.getWindow();
             WindowManager.LayoutParams params = mWindow.getAttributes();
@@ -83,7 +86,7 @@ public class PPWindow implements PopupWindow.OnDismissListener {
 
         mPopupWindow.setOnDismissListener(this);
 
-        if (!mEnableOutsideTouchDisMiss) {
+        if (!mTouchDismiss) {
             mPopupWindow.setFocusable(true);
             mPopupWindow.setOutsideTouchable(false);
             mPopupWindow.setBackgroundDrawable(null);
@@ -161,26 +164,39 @@ public class PPWindow implements PopupWindow.OnDismissListener {
         return this;
     }
 
+    public PPWindow showAsCenter(View anchor) {
+        if (mGravity == 0) {
+            return showAsCenter(anchor, Gravity.CENTER);
+        }
+        return showAsCenter(anchor, mGravity);
+    }
+
     public PPWindow showAsDropDown(View anchor) {
-        if (mPopupWindow != null) {
-            mPopupWindow.showAsDropDown(anchor);
+        if (mGravity == 0) {
+            return showAsDropDown(anchor, Gravity.CENTER);
         }
-        return this;
+        return showAsDropDown(anchor, mGravity);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public PPWindow showAsDropDown(View anchor, int xOff, int yOff, int gravity) {
-        if (mPopupWindow != null) {
-            mPopupWindow.showAsDropDown(anchor, xOff, yOff, gravity);
+    public PPWindow showAsTop(View anchor) {
+        if (mGravity == 0) {
+            return showAsTop(anchor, Gravity.CENTER);
         }
-        return this;
+        return showAsTop(anchor, mGravity);
     }
 
-    public PPWindow showAsDropDown(View anchor, int xOff, int yOff) {
-        if (mPopupWindow != null) {
-            mPopupWindow.showAsDropDown(anchor, xOff, yOff);
+    public PPWindow showAsLeft(View anchor) {
+        if (mGravity == 0) {
+            return showAsLeft(anchor, Gravity.CENTER);
         }
-        return this;
+        return showAsLeft(anchor, mGravity);
+    }
+
+    public PPWindow showAsRight(View anchor) {
+        if (mGravity == 0) {
+            return showAsLeft(anchor, Gravity.CENTER);
+        }
+        return showAsRight(anchor, mGravity);
     }
 
     public int getWidth() {
@@ -212,17 +228,128 @@ public class PPWindow implements PopupWindow.OnDismissListener {
         return mPopupWindow;
     }
 
+    private PPWindow showAsDropDown(View anchor, int gravity) {
+        if (mPopupWindow != null) {
+            switch (gravity) {
+                case Gravity.CENTER:
+                    if (mCoverAnchor) {
+                        mPopupWindow.showAsDropDown(anchor, ((anchor.getWidth() - getWidth()) / 2), -anchor.getHeight());
+                    } else {
+                        mPopupWindow.showAsDropDown(anchor, ((anchor.getWidth() - getWidth()) / 2), 0);
+                    }
+                    break;
+                case Gravity.START:
+                    if (mCoverAnchor) {
+                        mPopupWindow.showAsDropDown(anchor, anchor.getWidth(), -anchor.getHeight());
+                    } else {
+                        mPopupWindow.showAsDropDown(anchor);
+                    }
+                    break;
+                case Gravity.END:
+                    if (mCoverAnchor) {
+                        mPopupWindow.showAsDropDown(anchor, anchor.getWidth() - getWidth(), -anchor.getHeight());
+                    } else {
+                        mPopupWindow.showAsDropDown(anchor, anchor.getWidth() - getWidth(), 0);
+                    }
+                    break;
+                default:
+                    throw new IllegalArgumentException("=== not support this gravity ===");
+            }
+        }
+        return this;
+    }
+
+    private PPWindow showAsLeft(View anchor, int gravity) {
+        if (mPopupWindow != null) {
+            switch (gravity) {
+                case Gravity.CENTER:
+                    mPopupWindow.showAsDropDown(anchor, -getWidth(), -((getHeight() + anchor.getHeight()) / 2));
+                    break;
+                case Gravity.TOP:
+                    mPopupWindow.showAsDropDown(anchor, -getWidth(), -(getHeight() + anchor.getHeight()));
+                    break;
+                case Gravity.BOTTOM:
+                    mPopupWindow.showAsDropDown(anchor, -getWidth(), 0);
+                    break;
+                default:
+                    throw new IllegalArgumentException("=== not support this gravity,just support CENTER、BOTTOM、TOP! ===");
+            }
+        }
+        return this;
+    }
+
+    private PPWindow showAsRight(View anchor, int gravity) {
+        if (mPopupWindow != null) {
+            switch (gravity) {
+                case Gravity.CENTER:
+                    mPopupWindow.showAsDropDown(anchor, anchor.getWidth(), -((getHeight() + anchor.getHeight()) / 2));
+                    break;
+                case Gravity.TOP:
+                    mPopupWindow.showAsDropDown(anchor, anchor.getWidth(), -(getHeight() + anchor.getHeight()));
+                    break;
+                case Gravity.BOTTOM:
+                    mPopupWindow.showAsDropDown(anchor, anchor.getWidth(), 0);
+                    break;
+                default:
+                    throw new IllegalArgumentException("=== not support this gravity,just support CENTER、BOTTOM、TOP! ===");
+            }
+        }
+        return this;
+    }
+
+    private PPWindow showAsTop(View anchor, int gravity) {
+        if (mPopupWindow != null) {
+            switch (gravity) {
+                case Gravity.CENTER:
+                    mPopupWindow.showAsDropDown(anchor, (getWidth() / 2), -(anchor.getHeight() + getHeight()));
+                    break;
+                case Gravity.START:
+                    mPopupWindow.showAsDropDown(anchor);
+                    break;
+                case Gravity.END:
+                    mPopupWindow.showAsDropDown(anchor, getWidth(), -(anchor.getHeight() + getHeight()));
+                    break;
+                default:
+                    throw new IllegalArgumentException("=== not support this gravity ===");
+            }
+        }
+        return this;
+    }
+
+    private PPWindow showAsCenter(View anchor, int gravity) {
+        if (mPopupWindow != null) {
+            switch (gravity) {
+                case Gravity.CENTER:
+                    mPopupWindow.showAsDropDown(anchor, (anchor.getWidth() - getWidth()) / 2, -((getHeight() + anchor.getHeight()) / 2));
+                    break;
+                case Gravity.START:
+                    mPopupWindow.showAsDropDown(anchor, 0, -((getHeight() + anchor.getHeight()) / 2));
+                    break;
+                case Gravity.END:
+                    mPopupWindow.showAsDropDown(anchor, anchor.getWidth() / 2, -((getHeight() + anchor.getHeight()) / 2));
+                    break;
+                case Gravity.TOP:
+                    break;
+                case Gravity.BOTTOM:
+                    break;
+                default:
+                    throw new IllegalArgumentException("=== not support this gravity ===");
+            }
+        }
+        return this;
+    }
+
     public static class Builder {
 
         private final PPWindow mPpWindow = new PPWindow();
 
-        public Builder size(int width, int height) {
+        public Builder setSize(int width, int height) {
             mPpWindow.mHeight = height;
             mPpWindow.mWidth = width;
             return this;
         }
 
-        public Builder focusable(boolean focusable) {
+        public Builder setFocusable(boolean focusable) {
             mPpWindow.mIsFocusable = focusable;
             return this;
         }
@@ -292,14 +419,24 @@ public class PPWindow implements PopupWindow.OnDismissListener {
             return this;
         }
 
+        public Builder setCoverAnchor(boolean coverAnchor) {
+            mPpWindow.mCoverAnchor = coverAnchor;
+            return this;
+        }
+
+        public Builder setGravity(int gravity) {
+            mPpWindow.mGravity = gravity;
+            return this;
+        }
+
         /**
          * 设置背景变暗是否可用
          *
          * @param isDark
          * @return
          */
-        public Builder enableBackgroundDark(boolean isDark) {
-            mPpWindow.mIsBackgroundDark = isDark;
+        public Builder setDarken(boolean isDark) {
+            mPpWindow.mDarken = isDark;
             return this;
         }
 
@@ -320,8 +457,8 @@ public class PPWindow implements PopupWindow.OnDismissListener {
          * @param disMiss
          * @return
          */
-        public Builder enableOutsideTouchableDismiss(boolean disMiss) {
-            mPpWindow.mEnableOutsideTouchDisMiss = disMiss;
+        public Builder setTouchDismiss(boolean disMiss) {
+            mPpWindow.mTouchDismiss = disMiss;
             return this;
         }
 
