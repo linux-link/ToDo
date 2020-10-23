@@ -3,17 +3,17 @@ package com.wujia.arch.utils
 import android.app.Activity
 import androidx.fragment.app.Fragment
 import java.util.*
+
 /**
  * @author WJ
  * @date 2020/2/29 14:50
  *
  * @desc
  */
-object AppStackManager{
+object AppStackManager {
 
     private val mStackActivity = Stack<Activity>()
     private val mStackFragment = Stack<Fragment>()
-
 
     fun getStackActivity(): Stack<Activity> {
         return mStackActivity

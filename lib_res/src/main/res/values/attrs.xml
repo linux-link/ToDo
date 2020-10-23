@@ -28,10 +28,14 @@
     </declare-styleable>
 
     <declare-styleable name="TabDigit">
-<!--        <attr name="textSize" format="dimension" />-->
-<!--        <attr name="padding" format="dimension" />-->
-<!--        <attr name="cornerSize" format="dimension" />-->
-<!--        <attr name="textColor" format="color" />-->
-<!--        <attr name="backgroundColor" format="color" />-->
+        <attr name="textSize" format="dimension" />
+        <attr name="padding" format="dimension" />
+        <attr name="cornersSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="MaterialSwitch">
+        <attr name="color" format="color|reference"/>
     </declare-styleable>
 </resources>
