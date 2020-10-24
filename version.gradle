@@ -43,6 +43,7 @@ androidx.appcompat = "androidx.appcompat:appcompat:1.1.0"
 androidx.constraint = "androidx.constraintlayout:constraintlayout:2.0.2"
 androidx.legacy = "androidx.legacy:legacy-support-v4:1.0.0"
 androidx.fragment_ktx = "androidx.fragment:fragment-ktx:1.1.0-alpha09"
+androidx.swiperefresh = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 deps.androidx = androidx
 
 def room = [:]
@@ -82,7 +83,7 @@ deps.bmob = 'cn.bmob.android:bmob-sdk:3.6.6'
 
 /**************************************************************************************************/
 deps.libs = [
-        ':lib_res', ':lib_ct_base', ':lib_arch'
+        ':lib_res', ':lib_ct_base'
 ]
 
 deps.dependencies = [
@@ -94,6 +95,8 @@ deps.dependencies = [
         deps.androidx.constraint,
         deps.androidx.recyclerview,
         deps.androidx.fragment_ktx,
+        deps.androidx.swiperefresh,
+        deps.paging.runtime,
 
         deps.nav.fragmennt,
         deps.nav.fragmennt_ktx,
@@ -110,14 +113,4 @@ deps.dependencies = [
         deps.bmob,
 
         deps.glide.core
-]
-
-deps.arch = [
-        deps.kotlin.stdlib,
-        deps.androidx.recyclerview,
-        deps.androidx.ktx,
-        deps.androidx.appcompat,
-        deps.lifecycle.viewmodel_ktx,
-        deps.lifecycle.extensions,
-        deps.paging.runtime,
 ]
