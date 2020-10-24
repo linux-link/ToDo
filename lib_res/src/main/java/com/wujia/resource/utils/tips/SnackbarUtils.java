@@ -25,6 +25,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.wujia.resource.R;
+import com.wujia.resource.utils.DensityUtils;
 import com.wujia.resource.utils.ScreenUtils;
 
 /**
@@ -469,7 +470,7 @@ public class SnackbarUtils {
      * @return
      */
     private int calculateSnackBarHeight() {
-        int SnackbarHeight = ScreenUtils.dp2px(mSnackbar.getView().getContext(), 28) + ScreenUtils.sp2px(mSnackbar.getView().getContext(), 14);
+        int SnackbarHeight = DensityUtils.dp2px( 28) + DensityUtils.sp2px(14);
         Log.e("Jet", "直接获取MessageView高度:" + mSnackbar.getView().findViewById(R.id.snackbar_text).getHeight());
         return SnackbarHeight;
     }

@@ -27,7 +27,7 @@
         <attr name="indicatorMarginBottom" format="dimension|reference" />
     </declare-styleable>
 
-    <declare-styleable name="TabDigit">
+    <declare-styleable name="DigitView">
         <attr name="textSize" format="dimension" />
         <attr name="padding" format="dimension" />
         <attr name="cornersSize" format="dimension" />

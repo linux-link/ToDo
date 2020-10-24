@@ -70,4 +70,7 @@ dependencies {
     deps.libs.each {
         implementation project(path: it)
     }
+//    deps.module.each {
+//        implementation project(path: it)
+//    }
 }
