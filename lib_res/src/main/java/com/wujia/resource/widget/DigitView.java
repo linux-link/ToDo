@@ -13,6 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
 import androidx.annotation.Nullable;
 
@@ -64,7 +65,7 @@ public class DigitView extends View {
         mTextSize = array.getDimensionPixelSize(R.styleable.DigitView_textSize, DensityUtils.sp2px(30));
         mTextColor = array.getColor(R.styleable.DigitView_textColor, Color.BLACK);
         mCornerSize = array.getDimensionPixelSize(R.styleable.DigitView_cornersSize, DensityUtils.dp2px(5));
-        mDividerSize = 1;
+        mDividerSize = DensityUtils.dp2px(5);
         mBackgroundColor = array.getColor(R.styleable.DigitView_backgroundColor, Color.WHITE);
         array.recycle();
         if (getBackground() == null) {
@@ -122,11 +123,10 @@ public class DigitView extends View {
         //绘制圆角矩形的下半部分
         canvas.save();
         mCamera.save();
-        int y = mDistance + halfHeight + mDividerSize;
         mCamera.rotateX(mRotateX);
-        canvas.translate(mViewWidth / 2f, y);
+        canvas.translate(mViewWidth / 2f, mViewHeight / 2f);
         mCamera.applyToCanvas(canvas);
-        canvas.translate(-mViewWidth / 2f, -y);
+        canvas.translate(-mViewWidth / 2f, -mViewHeight / 2f);
         mCamera.restore();
         mFooterBackgroundRect.set(mDistance, halfHeight + mDistance + mDividerSize,
                 width + mDistance, halfHeight * 2 + mDividerSize + mDistance);
@@ -135,6 +135,7 @@ public class DigitView extends View {
     }
 
     private void drawNumber(Canvas canvas) {
+        Log.e("TAG", "drawNumber: " + mRotateX);
         mNumberPaint.getTextBounds("8", 0, 1, mTextRect);
         float textHeight = Math.abs(mTextRect.bottom + mTextRect.top);
         float textWidth = Math.abs(mTextRect.right + mTextRect.left);
@@ -151,16 +152,14 @@ public class DigitView extends View {
         canvas.restore();
 
         if (mRotateX >= 90) {
-            int halfHeight = mViewHeight / 2 - mDividerSize / 2 - mDistance;
-            int y = mDistance + halfHeight + mDividerSize;
             //绘制上半部分数字（底板）
             canvas.save();
             canvas.clipRect(mHeaderBackgroundRect);
             mCamera.save();
             mCamera.rotateX(mRotateX - 180);
-            canvas.translate(mViewWidth / 2f, y);
+            canvas.translate(mViewWidth / 2f, mViewHeight / 2f);
             mCamera.applyToCanvas(canvas);
-            canvas.translate(-mViewWidth / 2f, -y);
+            canvas.translate(-mViewWidth / 2f, -mViewHeight / 2f);
             mCamera.restore();
             canvas.drawRoundRect(mHeaderBackgroundRect, mCornerSize, mCornerSize, mBackgroundPaint);
             canvas.drawText(Character.toString(mChars[mNextIndex]), 0, 1, baselineX, baselineY, mNumberPaint);
@@ -190,7 +189,7 @@ public class DigitView extends View {
     }
 
     private void drawDividerLine(Canvas canvas) {
-        if (mRotateX >= 90 && mRotateX <= 95) {
+        if (mRotateX >= 70 && mRotateX <= 130) {
             return;
         }
         int width = mViewWidth - mDistance * 2;
@@ -222,6 +221,8 @@ public class DigitView extends View {
         if (mRotateAnimator == null) {
             mRotateAnimator = ObjectAnimator.ofFloat(this, "rotateX", mRotateX, 180f);
         }
+        mRotateAnimator.setInterpolator(new LinearInterpolator());
+        mRotateAnimator.cancel();
         mRotateAnimator.setDuration(800L);
         return mRotateAnimator;
     }
