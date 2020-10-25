@@ -6,20 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <com.wujia.resource.widget.DigitView
+    <com.wujia.resource.widget.FlipClock
         android:id="@+id/text_home"
-        android:layout_width="100dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@android:color/holo_blue_light"
-        app:textSize="45sp"
-        app:textColor="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:digit_textColor="@android:color/black"
+        app:digit_textSize="45sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

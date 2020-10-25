@@ -1,16 +1,15 @@
 package com.wujia.todo.clock.ui.home
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.os.SystemClock
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.wujia.resource.widget.DigitView
 import com.wujia.todo.clock.R
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
@@ -24,10 +23,6 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val view = root.findViewById<DigitView>(R.id.text_home);
-        view.setOnClickListener {
-            view.start(view.currentIndex+1)
-        }
         return root
     }
 }

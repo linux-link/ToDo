@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="80dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <com.wujia.resource.widget.DigitView
+        android:id="@+id/hour_high"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1" />
+
+    <com.wujia.resource.widget.DigitView
+        android:id="@+id/hour_low"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <com.wujia.resource.widget.DigitView
+        android:id="@+id/min_high"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1" />
+
+    <com.wujia.resource.widget.DigitView
+        android:id="@+id/min_low"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <com.wujia.resource.widget.DigitView
+        android:id="@+id/sec_high"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1" />
+
+    <com.wujia.resource.widget.DigitView
+        android:id="@+id/sec_low"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
