@@ -3,6 +3,8 @@ package com.wujia.resource.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,7 +43,6 @@ public class FlipClock extends LinearLayout {
     private int mDividerSize;
 
     private View mRootView;
-    private Chronometer mChronometer;
 
     /********************************* init function. *********************************************/
 

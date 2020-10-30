@@ -1,0 +1,83 @@
+if (isRunAlone.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'com.alibaba.arouter'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply from: '../upload.gradle'
+
+android {
+    compileSdkVersion builds.compile
+    buildToolsVersion builds.buildTools
+    resourcePrefix "main_"
+    defaultConfig {
+        if (isRunAlone.toBoolean()) {
+            applicationId "com.wujia.todo.main"
+        }
+        minSdkVersion builds.min
+        targetSdkVersion builds.target
+        versionCode builds.code
+        versionName builds.name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    //ARouter配置
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'boolean', 'isApp', isRunAlone.toString()
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'boolean', 'isApp', isRunAlone.toString()
+        }
+    }
+
+    sourceSets {
+        main {
+            if (isRunAlone.toBoolean()) {
+                manifest.srcFile 'src/debug/AndroidManifest.xml'
+                java.srcDir 'src/main/debug'
+            } else {
+                manifest.srcFile 'src/release/AndroidManifest.xml'
+            }
+        }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+}
+
+dependencies {
+    kapt deps.arouter.compiler
+    implementation deps.dependencies
+    deps.libs.each {
+        implementation project(path: it)
+    }
+}
+
+repositories { flatDir { dirs 'libs' } }
