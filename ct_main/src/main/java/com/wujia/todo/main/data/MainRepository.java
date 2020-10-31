@@ -1,4 +1,4 @@
-package com.wujia.todo.main;
+package com.wujia.todo.main.data;
 
 import com.wujia.arch.mvvm.model.BaseRepository;
 
