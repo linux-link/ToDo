@@ -8,20 +8,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
 /**
- * @author wujia0916.
- * @date 20-3-18
- * @desc Custom liveData that support sticky event.
+ * Custom liveData that support sticky event.
+ *
+ * @author WuJia.
+ * @version 1.0
+ * @date 2020/10/31
  */
 public class StickyLiveData<T> extends LiveData<T> {
 
     private IDestroyListener mDestroyListener;
 
-    private String mEventName;
+    private final String mChannelName;
     private T mStickyData;
     private int mVersion = 0;
 
-    public StickyLiveData(String eventName) {
-        mEventName = eventName;
+    public StickyLiveData(String channelName) {
+        mChannelName = channelName;
     }
 
     @Override
@@ -57,34 +59,33 @@ public class StickyLiveData<T> extends LiveData<T> {
 
     /**
      * Sticky event  observer.
-     * @param owner LifecycleOwner
+     *
+     * @param owner    LifecycleOwner
      * @param observer LiveData observer
-     * @param sticky isSticky
+     * @param sticky   isSticky
      */
-    public void observerSticky(LifecycleOwner owner,
-                               Observer<? super T> observer,
-                               boolean sticky) {
-        super.observe(owner, new WrapperObserver(this, observer, sticky));
+    public void observerSticky(LifecycleOwner owner, Observer<? super T> observer, boolean sticky) {
+        super.observe(owner, new WrapperObserver<>(this, observer, sticky));
         owner.getLifecycle().addObserver(new LifecycleEventObserver() {
             @Override
             public void onStateChanged(@NonNull LifecycleOwner source,
                                        @NonNull Lifecycle.Event event) {
                 if (event == Lifecycle.Event.ON_DESTROY) {
                     if (mDestroyListener != null) {
-                        mDestroyListener.onLiveDataDestroy(mEventName);
+                        mDestroyListener.onLiveDataDestroy(mChannelName);
                     }
                 }
             }
         });
     }
 
-    private static class WrapperObserver<L> implements Observer<L> {
-        private StickyLiveData<L> mLiveData;
-        private Observer<L> mObserver;
-        private boolean mSticky;
+    private static class WrapperObserver<T> implements Observer<T> {
+        private final StickyLiveData<T> mLiveData;
+        private final Observer<T> mObserver;
+        private final boolean mSticky;
         private int mLastVersion;
 
-        public WrapperObserver(StickyLiveData liveData, Observer<L> observer, boolean sticky) {
+        public WrapperObserver(StickyLiveData liveData, Observer<T> observer, boolean sticky) {
             mLiveData = liveData;
             mObserver = observer;
             mSticky = sticky;
@@ -92,7 +93,7 @@ public class StickyLiveData<T> extends LiveData<T> {
         }
 
         @Override
-        public void onChanged(L t) {
+        public void onChanged(T t) {
             if (mLastVersion >= mLiveData.mVersion) {
                 if (mSticky && mLiveData.mStickyData != null) {
                     mObserver.onChanged(mLiveData.mStickyData);
