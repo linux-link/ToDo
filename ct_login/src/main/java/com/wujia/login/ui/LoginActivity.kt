@@ -68,7 +68,7 @@ class LoginActivity :
                         SmsCodeActivity.start(this)
                     }
                 }
-                R.id.toolbar_left -> {
+                R.id.toolbar_left_icon -> {
                     onBackPressed()
                 }
             }

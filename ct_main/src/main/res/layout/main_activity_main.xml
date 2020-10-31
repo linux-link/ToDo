@@ -28,6 +28,7 @@
             android:fitsSystemWindows="true">
 
             <include
+                android:id="@+id/nav_layout"
                 layout="@layout/main_include_nav_header_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

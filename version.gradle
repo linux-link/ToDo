@@ -109,6 +109,7 @@ deps.dependencies = [
 
         deps.lifecycle.viewmodel_ktx,
         deps.lifecycle.extensions,
+        deps.lifecycle.livedata_ktx,
 
         deps.paging.runtime,
         deps.google.material,

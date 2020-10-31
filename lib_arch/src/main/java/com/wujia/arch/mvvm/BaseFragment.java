@@ -29,10 +29,9 @@ public abstract class BaseFragment extends Fragment {
         initView();
         return mRootView;
     }
+    protected abstract int setLayout();
 
     protected abstract void initView();
-
-    protected abstract int setLayout();
 
     protected void startActivity(Class<FragmentActivity> activityClass) {
         Intent intent = new Intent(requireActivity(), activityClass);

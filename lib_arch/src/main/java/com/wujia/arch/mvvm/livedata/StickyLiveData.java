@@ -110,9 +110,9 @@ public class StickyLiveData<T> extends LiveData<T> {
         /**
          * Call back when liveData destroy.
          *
-         * @param eventName event name
+         * @param channelName channel name
          */
-        void onLiveDataDestroy(String eventName);
+        void onLiveDataDestroy(String channelName);
 
     }
 }

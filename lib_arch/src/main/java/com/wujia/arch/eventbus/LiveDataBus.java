@@ -2,9 +2,7 @@ package com.wujia.arch.eventbus;
 
 import com.wujia.arch.mvvm.livedata.StickyLiveData;
 
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Event bus achieved by LiveData.
@@ -35,13 +33,13 @@ public class LiveDataBus {
         StickyLiveData liveData = mHashMap.get(channelName);
         if (liveData == null) {
             liveData = new StickyLiveData(channelName);
-            mHashMap.put(channelName, liveData);
             liveData.setDestroyListener(new StickyLiveData.IDestroyListener() {
                 @Override
-                public void onLiveDataDestroy(String eventName) {
-                    mHashMap.remove(eventName);
+                public void onLiveDataDestroy(String channelName) {
+                    mHashMap.remove(channelName);
                 }
             });
+            mHashMap.put(channelName, liveData);
         }
         return liveData;
     }

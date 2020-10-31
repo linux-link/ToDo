@@ -53,7 +53,7 @@ class SmsCodeActivity :
                     viewModel.getSmsCode()
                     startCountDown()
                 }
-                R.id.toolbar_left -> {
+                R.id.toolbar_left_icon -> {
                     onBackPressed()
                 }
             }
