@@ -1,6 +1,7 @@
 package com.wujia.todo.main
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import androidx.core.view.GravityCompat
 import com.wujia.arch.mvvm.BaseMvvmActivity
@@ -8,11 +9,18 @@ import com.wujia.resource.popup.PPWindow
 import com.wujia.resource.utils.StatusBar
 import com.wujia.todo.main.databinding.MainActivityMainBinding
 
+/**
+ * Main pager.
+ *
+ * @author WuJia.
+ * @date 2020/10/31
+ * @version 1.0
+ */
 class MainActivity : BaseMvvmActivity<MainViewModel, MainActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         StatusBar.fitSystemBar(this)
-        StatusBar.lightStatusBar(this, false)
+        StatusBar.lightStatusBar(this, true)
         super.onCreate(savedInstanceState)
     }
 
@@ -34,10 +42,11 @@ class MainActivity : BaseMvvmActivity<MainViewModel, MainActivityMainBinding>() 
                     binding.drawerLayout.openDrawer(GravityCompat.START)
                 }
                 R.id.toolbar_right_icon -> {
-                    val p = PPWindow.Builder()
+                    PPWindow.Builder()
                         .setView(R.layout.main_menu)
+                        .setCoverAnchor(true)
                         .build(this)
-                        .showAsCenter(binding.mainContainer.actionBar.toolbarRightIcon.rootView)
+                        .showAsDropDown(binding.mainContainer.actionBar.toolbarRightIcon)
                 }
             }
         }

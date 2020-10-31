@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ import androidx.annotation.RequiresApi;
  * @date 2020/10/19
  */
 public class PPWindow implements PopupWindow.OnDismissListener {
-
+    private static final String TAG = PPWindow.class.getSimpleName();
     private static final float DEFAULT_ALPHA = 0.7f;
 
     private int mWidth, mHeight;
@@ -82,6 +83,7 @@ public class PPWindow implements PopupWindow.OnDismissListener {
             mPopupWindow.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
             mWidth = mPopupWindow.getContentView().getMeasuredWidth();
             mHeight = mPopupWindow.getContentView().getMeasuredHeight();
+            Log.e(TAG, "initView: " + mWidth + ";" + mHeight);
         }
 
         mPopupWindow.setOnDismissListener(this);

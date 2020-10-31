@@ -32,9 +32,9 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
-            android:background="@android:color/white"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
+            android:background="@android:color/white"
             android:elevation="5dp" />
 
     </FrameLayout>
