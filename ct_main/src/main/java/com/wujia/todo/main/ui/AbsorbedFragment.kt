@@ -2,7 +2,6 @@ package com.wujia.todo.main.ui
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.wujia.arch.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmFragment
 import com.wujia.resource.popup.PPWindow

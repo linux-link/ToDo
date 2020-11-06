@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.miui.zeus.mimo.sdk.SplashAd
+import com.wujia.arch.utils.AppLifecycle
 import com.wujia.splash.R
 import com.wujia.todo.ct.base.business.login.LoginRouter
 import kotlinx.android.synthetic.main.sp_activity_splash.*

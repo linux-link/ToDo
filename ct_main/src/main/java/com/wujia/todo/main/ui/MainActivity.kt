@@ -1,13 +1,18 @@
 package com.wujia.todo.main.ui
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.ConnectivityManager.NetworkCallback
+import android.net.LinkProperties
+import android.net.Network
+import android.net.NetworkRequest
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.Toast
+import android.util.Log
 import androidx.core.view.GravityCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.wujia.arch.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmActivity
+import com.wujia.arch.utils.AppLifecycle
 import com.wujia.resource.utils.StatusBar
 import com.wujia.todo.main.R
 import com.wujia.todo.main.databinding.MainActivityMainBinding
@@ -20,7 +25,11 @@ import com.wujia.todo.main.viewmodel.MainViewModel
  * @date 2020/10/31
  * @version 1.0
  */
+
+
 class MainActivity : BaseMvvmActivity<MainViewModel, MainActivityMainBinding>() {
+
+    val TAG = MainActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         StatusBar.fitSystemBar(this)
@@ -37,6 +46,7 @@ class MainActivity : BaseMvvmActivity<MainViewModel, MainActivityMainBinding>() 
             R.id.nav_container, TodayFragment.newInstance()
         ).commit()
         initListener()
+        initAdResume()
     }
 
     private fun initListener() {
@@ -80,6 +90,38 @@ class MainActivity : BaseMvvmActivity<MainViewModel, MainActivityMainBinding>() 
             })
     }
 
+    private fun initAdResume() {
+        AppLifecycle.getInstance().addAppLifecycleListener(object :
+            AppLifecycle.IAppLifecycleListener() {
+
+            override fun onAppStop() {
+                super.onAppStop()
+                Log.e(TAG, "onAppStop: ")
+            }
+
+            override fun onAppResume() {
+                super.onAppResume()
+                Log.e(TAG, "onAppResume: ")
+            }
+
+            override fun onAppStart() {
+                super.onAppStart()
+                Log.e(TAG, "onAppStart: ")
+            }
+
+            override fun onAppCreate() {
+                super.onAppCreate()
+                Log.e(TAG, "onAppCreate: ")
+            }
+
+            override fun onAppPause() {
+                super.onAppPause()
+                Log.e(TAG, "onAppPause: ")
+            }
+        })
+    }
+
     override fun loadData(viewModel: MainViewModel?) {
+
     }
 }

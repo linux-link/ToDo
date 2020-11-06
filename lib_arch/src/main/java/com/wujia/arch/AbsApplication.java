@@ -6,7 +6,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
+import com.wujia.arch.utils.AppLifecycle;
 import com.wujia.arch.utils.AppStackManager;
 
 /**
@@ -16,7 +19,7 @@ import com.wujia.arch.utils.AppStackManager;
  * @version 1.0
  * @date 2020/9/1
  */
-public abstract class AbsApplication extends Application {
+public abstract class AbsApplication extends Application implements LifecycleObserver {
 
     private static Application sApplication;
 
@@ -32,6 +35,9 @@ public abstract class AbsApplication extends Application {
 
     private static void setApplication(Application application) {
         sApplication = application;
+
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(AppLifecycle.getInstance());
+
         application.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
