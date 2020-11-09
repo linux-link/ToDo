@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.launcher.ARouter
 import com.wujia.todo.ct.base.business.login.model.UserEntity
 
-const val LOGIN_ROUTER = "/login/login_service"
+const val LOGIN_ROUTER = "/login/login_pager"
 
 /**
  * @author WJ.

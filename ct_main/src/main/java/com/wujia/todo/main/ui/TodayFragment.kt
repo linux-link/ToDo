@@ -6,6 +6,7 @@ import androidx.core.view.GravityCompat
 import com.wujia.arch.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmFragment
 import com.wujia.resource.popup.PPWindow
+import com.wujia.todo.ct.base.ACTION_DRAWER_LAYOUT
 import com.wujia.todo.main.R
 import com.wujia.todo.main.databinding.MainFragmentTodayPagerBinding
 import com.wujia.todo.main.viewmodel.TodayViewModel
@@ -40,7 +41,7 @@ class TodayFragment : BaseMvvmFragment<TodayViewModel, MainFragmentTodayPagerBin
         binding.actionBar.setClickListener {
             when (it.id) {
                 R.id.toolbar_left_icon->{
-                    LiveDataBus.getInstance().getChannel(R.id.drawer_layout.toString())
+                    LiveDataBus.getInstance().getChannel(ACTION_DRAWER_LAYOUT)
                         .value = true
                 }
                 R.id.toolbar_right_icon -> {

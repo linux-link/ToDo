@@ -73,7 +73,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt deps.arouter.compiler
     implementation deps.dependencies
     deps.libs.each {

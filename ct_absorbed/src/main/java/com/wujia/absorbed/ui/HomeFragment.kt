@@ -1,11 +1,11 @@
 package com.wujia.absorbed.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.wujia.absorbed.R
 import com.wujia.absorbed.databinding.AbFragmentAbsorbedPagerBinding
 import com.wujia.absorbed.ui.page.CompassFragment
@@ -17,6 +17,7 @@ import com.wujia.arch.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmFragment
 import com.wujia.resource.popup.PPWindow
 import com.wujia.todo.ct.base.ACTION_DRAWER_LAYOUT
+import com.wujia.todo.ct.base.ROUTER_ABSORBED
 
 /**
  * 专注页面.
@@ -25,6 +26,7 @@ import com.wujia.todo.ct.base.ACTION_DRAWER_LAYOUT
  * @date 2020/10/31
  * @version 1.0
  */
+@Route(path = ROUTER_ABSORBED)
 class HomeFragment : BaseMvvmFragment<AbsorbedViewModel, AbFragmentAbsorbedPagerBinding>() {
 
     private var currentPosition = 0;

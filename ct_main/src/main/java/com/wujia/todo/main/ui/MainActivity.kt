@@ -3,11 +3,15 @@ package com.wujia.todo.main.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.alibaba.android.arouter.launcher.ARouter
 import com.wujia.arch.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmActivity
 import com.wujia.arch.utils.AppLifecycle
 import com.wujia.resource.utils.StatusBar
+import com.wujia.todo.ct.base.ACTION_DRAWER_LAYOUT
+import com.wujia.todo.ct.base.ROUTER_ABSORBED
 import com.wujia.todo.main.R
 import com.wujia.todo.main.databinding.MainActivityMainBinding
 import com.wujia.todo.main.viewmodel.MainViewModel
@@ -47,7 +51,7 @@ class MainActivity : BaseMvvmActivity<MainViewModel, MainActivityMainBinding>() 
             when (it.id) {
                 R.id.btn_absorbed -> {
                     transaction.replace(
-                        R.id.nav_container, AbsorbedFragment.newInstance()
+                        R.id.nav_container, ARouter.getInstance().build(ROUTER_ABSORBED).navigation() as Fragment
                     ).commit()
                 }
                 R.id.btn_today -> {
@@ -61,7 +65,7 @@ class MainActivity : BaseMvvmActivity<MainViewModel, MainActivityMainBinding>() 
     }
 
     override fun initViewObservable(viewModel: MainViewModel?) {
-        LiveDataBus.getInstance().getChannel(R.id.drawer_layout.toString())
+        LiveDataBus.getInstance().getChannel(ACTION_DRAWER_LAYOUT)
             .observe(this, object : Observer<Boolean> {
                 override fun onChanged(state: Boolean) {
                     if (state) {

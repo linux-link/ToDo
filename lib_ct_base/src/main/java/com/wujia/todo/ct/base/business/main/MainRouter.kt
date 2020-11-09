@@ -4,7 +4,7 @@ import android.content.Context
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.launcher.ARouter
 
-const val MAIN_ROUTER = "/main/main_service"
+const val MAIN_ROUTER = "/main/main_pager"
 
 /**
  * @author WJ.

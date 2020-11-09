@@ -4,8 +4,7 @@
 
     <application>
         <activity
-            android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main" />
+            android:name=".ui.MainActivity" />
     </application>
 
 </manifest>
