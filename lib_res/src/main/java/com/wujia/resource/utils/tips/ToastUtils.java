@@ -11,8 +11,9 @@ import android.widget.Toast;
  * @date 2020/10/19
  */
 public class ToastUtils {
+
     private Toast mToast;
-    private Context mContext;
+    private final Context mContext;
 
     public ToastUtils(Context context) {
         this.mContext = context;

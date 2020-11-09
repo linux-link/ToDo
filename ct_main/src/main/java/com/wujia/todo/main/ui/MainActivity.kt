@@ -1,11 +1,5 @@
 package com.wujia.todo.main.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.ConnectivityManager.NetworkCallback
-import android.net.LinkProperties
-import android.net.Network
-import android.net.NetworkRequest
 import android.os.Bundle
 import android.util.Log
 import androidx.core.view.GravityCompat
@@ -25,8 +19,6 @@ import com.wujia.todo.main.viewmodel.MainViewModel
  * @date 2020/10/31
  * @version 1.0
  */
-
-
 class MainActivity : BaseMvvmActivity<MainViewModel, MainActivityMainBinding>() {
 
     val TAG = MainActivity::class.java.simpleName
