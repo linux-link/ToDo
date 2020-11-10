@@ -75,7 +75,6 @@ android {
 dependencies {
     kapt deps.arouter.compiler
     implementation deps.dependencies
-    implementation project(":ct_absorbed")
     deps.libs.each {
         implementation project(path: it)
     }

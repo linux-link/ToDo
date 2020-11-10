@@ -11,10 +11,9 @@
         android:layout_height="match_parent"
         tools:context=".ui.page.PointerClockFragment">
 
-        <TextView
+        <com.wujia.resource.widget.clock.PointerClockView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 </layout>

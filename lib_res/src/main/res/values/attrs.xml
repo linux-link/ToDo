@@ -47,4 +47,12 @@
         <attr name="digit_boardColor" format="color" />
         <attr name="date_format" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="PointerClockView">
+        <attr name="hourHandColor" format="color|reference" />
+        <attr name="minuteHandColor" format="color|reference" />
+        <attr name="secondHandColor" format="color|reference" />
+        <attr name="scaleColor" format="color|reference" />
+    </declare-styleable>
+
 </resources>
