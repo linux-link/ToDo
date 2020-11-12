@@ -6,7 +6,7 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.launcher.ARouter
-import com.wujia.arch.eventbus.LiveDataBus
+import com.wujia.arch.utils.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmActivity
 import com.wujia.arch.utils.AppLifecycle
 import com.wujia.resource.utils.StatusBar

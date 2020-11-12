@@ -13,7 +13,7 @@ import com.wujia.absorbed.ui.page.FlipClockFragment
 import com.wujia.absorbed.ui.page.PointerClockFragment
 import com.wujia.absorbed.ui.page.TimerFragment
 import com.wujia.absorbed.viewmodel.AbsorbedViewModel
-import com.wujia.arch.eventbus.LiveDataBus
+import com.wujia.arch.utils.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmFragment
 import com.wujia.resource.popup.PPWindow
 import com.wujia.todo.ct.base.ACTION_DRAWER_LAYOUT

@@ -1,4 +1,4 @@
-package com.wujia.arch.mvvm.livedata;
+package com.wujia.arch.utils.eventbus;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;

@@ -2,8 +2,7 @@ package com.wujia.todo.main.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.GravityCompat
-import com.wujia.arch.eventbus.LiveDataBus
+import com.wujia.arch.utils.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmFragment
 import com.wujia.resource.popup.PPWindow
 import com.wujia.todo.ct.base.ACTION_DRAWER_LAYOUT

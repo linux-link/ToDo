@@ -6,9 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.wujia.resource.R;
@@ -66,7 +70,6 @@ public class PointerClockView extends View {
     }
 
     private void drawPointer(Canvas canvas) {
-
     }
 
     private void drawCompass(Canvas canvas) {

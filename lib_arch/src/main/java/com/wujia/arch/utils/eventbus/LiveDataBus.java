@@ -1,6 +1,4 @@
-package com.wujia.arch.eventbus;
-
-import com.wujia.arch.mvvm.livedata.StickyLiveData;
+package com.wujia.arch.utils.eventbus;
 
 import java.util.concurrent.ConcurrentHashMap;
 
