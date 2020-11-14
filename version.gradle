@@ -9,8 +9,12 @@ ext.builds = builds
 
 def addRepos(RepositoryHandler handler) {
     handler.mavenLocal()
-    handler.google()
-    handler.jcenter()
+    handler.maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+    handler.maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+    handler.maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
+    handler.maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
+//    handler.google()
+//    handler.jcenter()
     handler.maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
 
 }
