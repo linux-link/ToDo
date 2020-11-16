@@ -28,7 +28,7 @@ class TimerFragment : BaseMvvmFragment<TimerViewModel, AbFragmentTimerBinding>()
     }
 
     override fun initView() {
-
+        binding.pointer.start()
     }
 
     override fun initViewObservable(viewModel: TimerViewModel?) {

@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  * @version 1.0
  * @date 2020/10/17
  */
-public class FlipClock extends LinearLayout {
+public class FlipClockView extends LinearLayout {
 
     private final int[] mDigitViews = new int[]{R.id.hour_high, R.id.hour_low, R.id.min_high, R.id.min_low,
             R.id.sec_high, R.id.sec_low};
@@ -46,23 +46,23 @@ public class FlipClock extends LinearLayout {
 
     /********************************* init function. *********************************************/
 
-    public FlipClock(Context context) {
+    public FlipClockView(Context context) {
         super(context, null);
     }
 
-    public FlipClock(Context context, @Nullable AttributeSet attrs) {
+    public FlipClockView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs);
     }
 
     private void initView(Context context, AttributeSet attrs) {
         mRootView = LayoutInflater.from(context).inflate(R.layout.layout_flip_clock, this);
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.FlipClock, 0, 0);
-        mTextSize = array.getDimensionPixelSize(R.styleable.FlipClock_digit_textSize, DensityUtils.sp2px(20));
-        mTextColor = array.getColor(R.styleable.FlipClock_digit_textColor, Color.BLACK);
-        mCornerSize = array.getDimensionPixelSize(R.styleable.FlipClock_digit_cornersSize, DensityUtils.dp2px(5));
-        mDividerSize = array.getDimensionPixelSize(R.styleable.FlipClock_digit_dividerSize, DensityUtils.dp2px(1));
-        mBoardColor = array.getColor(R.styleable.FlipClock_digit_boardColor, Color.WHITE);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.FlipClockView, 0, 0);
+        mTextSize = array.getDimensionPixelSize(R.styleable.FlipClockView_digit_textSize, DensityUtils.sp2px(20));
+        mTextColor = array.getColor(R.styleable.FlipClockView_digit_textColor, Color.BLACK);
+        mCornerSize = array.getDimensionPixelSize(R.styleable.FlipClockView_digit_cornersSize, DensityUtils.dp2px(5));
+        mDividerSize = array.getDimensionPixelSize(R.styleable.FlipClockView_digit_dividerSize, DensityUtils.dp2px(1));
+        mBoardColor = array.getColor(R.styleable.FlipClockView_digit_boardColor, Color.WHITE);
         array.recycle();
         applyAttribute();
         initTime();

@@ -36,19 +36,8 @@ class PointerClockFragment :
         return R.layout.ab_fragment_pointer_clock
     }
 
-    var i = 0
-    var j = 0;
-
     override fun initView() {
         binding.pointer.autoUpdate(true)
-
-//        val schedule: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
-//        schedule.scheduleAtFixedRate({
-//            i++
-//            if (i % 10 == 0) {
-//                j ++
-//            }
-//        }, 1, 1, TimeUnit.SECONDS)
     }
 
     override fun initViewObservable(viewModel: PointerClockViewModel?) {

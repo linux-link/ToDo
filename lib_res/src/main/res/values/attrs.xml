@@ -28,7 +28,7 @@
     </declare-styleable>
 
     <declare-styleable name="MaterialSwitch">
-        <attr name="color" format="color|reference"/>
+        <attr name="material_color" format="color|reference" />
     </declare-styleable>
 
     <declare-styleable name="DigitView">
@@ -39,7 +39,7 @@
         <attr name="boardColor" format="color" />
     </declare-styleable>
 
-    <declare-styleable name="FlipClock">
+    <declare-styleable name="FlipClockView">
         <attr name="digit_textSize" format="dimension" />
         <attr name="digit_dividerSize" format="dimension" />
         <attr name="digit_cornersSize" format="dimension" />
@@ -53,6 +53,11 @@
         <attr name="minuteHandColor" format="color|reference" />
         <attr name="secondHandColor" format="color|reference" />
         <attr name="scaleColor" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="TimerClockView">
+        <attr name="timer_PointColor" format="color|reference" />
+        <attr name="timer_scaleColor" format="color|reference" />
     </declare-styleable>
 
 </resources>

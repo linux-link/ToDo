@@ -60,7 +60,7 @@ public class PointerClockView extends View {
         mScaleHandColor = typedArray.getColor(R.styleable.PointerClockView_scaleColor, Color.GRAY);
         mPointerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPointerPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPointerPaint.setShadowLayer(3,0,0,Color.BLACK);
+        mPointerPaint.setShadowLayer(3, 0, 0, Color.BLACK);
 
         mCompassPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCompassPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -114,22 +114,21 @@ public class PointerClockView extends View {
         int hourY = mViewHeight / 2 - mCompassRadius + 220;
         canvas.drawLine(mCenterX, mCenterY, mCenterX, hourY, mPointerPaint);
         canvas.restore();
+
+        mPointerPaint.setStrokeWidth(30);
+        canvas.drawPoint(mCenterX, mCenterY, mPointerPaint);
     }
 
     private void drawCompass(Canvas canvas) {
         canvas.save();
-        mCompassPaint.setColor(mHourHandColor);
-        mCompassPaint.setStrokeWidth(30);
-        canvas.drawPoint(mViewWidth / 2f, mViewHeight / 2f, mCompassPaint);
-
         mCompassPaint.setColor(mScaleHandColor);
         mCompassPaint.setStrokeWidth(5);
-        canvas.translate(mViewWidth / 2f, mViewHeight / 2f);
+        canvas.translate(mCenterX, mCenterY);
         for (int i = 0; i < 360; i++) {
             if (i % 30 == 0) {
-                canvas.drawLine(mViewWidth / 3f - 40, 0, mCompassRadius, 0, mCompassPaint);
+                canvas.drawLine(mCompassRadius - 40, 0, mCompassRadius, 0, mCompassPaint);
             } else if (i % 6 == 0) {
-                canvas.drawLine(mViewWidth / 3f - 5, 0, mCompassRadius, 0, mCompassPaint);
+                canvas.drawLine(mCompassRadius - 5, 0, mCompassRadius, 0, mCompassPaint);
             }
             canvas.rotate(1);
         }

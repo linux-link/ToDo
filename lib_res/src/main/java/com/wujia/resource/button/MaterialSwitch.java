@@ -52,7 +52,7 @@ public class MaterialSwitch extends View {
         super(context, attrs, 0);
         setLayerType(LAYER_TYPE_HARDWARE, null);
         TypedArray typedArray = context.obtainStyledAttributes(R.styleable.MaterialSwitch);
-        mSmartSwitchColor = typedArray.getColor(R.styleable.MaterialSwitch_color,
+        mSmartSwitchColor = typedArray.getColor(R.styleable.MaterialSwitch_material_color,
                 context.getResources().getColor(android.R.color.white));
         typedArray.recycle();
 
