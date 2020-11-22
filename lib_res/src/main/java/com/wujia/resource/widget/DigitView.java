@@ -12,7 +12,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
@@ -38,6 +37,7 @@ public class DigitView extends View {
     private int mTextColor;
     private int mBoardColor;
     private int mDividerSize;
+    private int mDividerColor;
 
     // inner attributeSet
     private int mNextIndex = 1;
@@ -69,10 +69,11 @@ public class DigitView extends View {
 
     private void initView(Context context, AttributeSet attrs) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.DigitView, 0, 0);
-        mTextSize = array.getDimensionPixelSize(R.styleable.DigitView_textSize, DensityUtils.sp2px(20));
+        mTextSize = array.getDimensionPixelSize(R.styleable.DigitView_textSize, 30);
         mTextColor = array.getColor(R.styleable.DigitView_textColor, Color.BLACK);
-        mCornerSize = array.getDimensionPixelSize(R.styleable.DigitView_cornersSize, DensityUtils.dp2px(5));
-        mDividerSize = array.getDimensionPixelSize(R.styleable.DigitView_dividerSize, DensityUtils.dp2px(1));
+        mCornerSize = array.getDimensionPixelSize(R.styleable.DigitView_cornersSize, 10);
+        mDividerSize = array.getDimensionPixelSize(R.styleable.DigitView_dividerSize, 2);
+        mDividerColor = array.getColor(R.styleable.DigitView_dividerColor, Color.BLACK);
         mBoardColor = array.getColor(R.styleable.DigitView_boardColor, Color.WHITE);
         array.recycle();
     }
@@ -80,18 +81,8 @@ public class DigitView extends View {
     private void initPaints() {
         mNumberPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mNumberPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        mNumberPaint.setTextSize(DensityUtils.sp2px(mTextSize));
-        mNumberPaint.setColor(mTextColor);
-
         mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBackgroundPaint.setColor(mBoardColor);
-
         mDividerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        ColorDrawable drawable = (ColorDrawable) getBackground();
-        if (drawable != null) {
-            mDividerPaint.setColor(drawable.getColor());
-        }
-        mDividerPaint.setStrokeWidth(mDividerSize);
     }
 
     private void initCamera() {
@@ -112,7 +103,6 @@ public class DigitView extends View {
     @Override
     protected void onSizeChanged(int width, int height, int oldw, int oldh) {
         super.onSizeChanged(width, height, oldw, oldh);
-        Log.e("TAG", "onSizeChanged: " + width + ";" + height);
         mViewWidth = width;
         mViewHeight = height;
     }
@@ -120,6 +110,8 @@ public class DigitView extends View {
     /********************************* inner function. ********************************************/
 
     private void drawBackground(Canvas canvas) {
+        mBackgroundPaint.setColor(mBoardColor);
+
         int width = mViewWidth - mDistance * 2;
         int halfHeight = mViewHeight / 2 - mDividerSize / 2 - mDistance;
         //绘制圆角矩形的上半部分
@@ -150,6 +142,9 @@ public class DigitView extends View {
     }
 
     private void drawNumber(Canvas canvas) {
+        mNumberPaint.setTextSize(DensityUtils.sp2px(mTextSize));
+        mNumberPaint.setColor(mTextColor);
+
         mNumberPaint.getTextBounds("8", 0, 1, mTextRect);
         float textHeight = Math.abs(mTextRect.bottom + mTextRect.top);
         float textWidth = Math.abs(mTextRect.right + mTextRect.left);
@@ -203,9 +198,12 @@ public class DigitView extends View {
     }
 
     private void drawDividerLine(Canvas canvas) {
-        if (mRotateX >= 70 && mRotateX <= 130) {
-            return;
-        }
+//        if (mRotateX >= 70 && mRotateX <= 130) {
+//            return;
+//        }
+        mDividerPaint.setColor(mDividerColor);
+        mDividerPaint.setStrokeWidth(mDividerSize);
+
         int width = mViewWidth - mDistance * 2;
         canvas.save();
         canvas.drawLine(mDistance, mViewHeight / 2f, mDistance + width, mViewHeight / 2f, mDividerPaint);
@@ -256,6 +254,7 @@ public class DigitView extends View {
 
     public void setTextSize(int textSize) {
         mTextSize = textSize;
+        invalidate();
     }
 
     public void setCornerSize(int cornerSize) {
@@ -274,6 +273,10 @@ public class DigitView extends View {
 
     public void setDividerSize(int dividerSize) {
         mDividerSize = dividerSize;
+    }
+
+    public void setDividerColor(int dividerColor) {
+        mDividerColor = dividerColor;
     }
 
     public void start(int index) {

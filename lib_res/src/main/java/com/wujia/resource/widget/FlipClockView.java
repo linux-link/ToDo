@@ -41,6 +41,7 @@ public class FlipClockView extends LinearLayout {
     private int mTextColor;
     private int mBoardColor;
     private int mDividerSize;
+    private int mDividerColor;
 
     private View mRootView;
 
@@ -62,10 +63,12 @@ public class FlipClockView extends LinearLayout {
         mTextColor = array.getColor(R.styleable.FlipClockView_digit_textColor, Color.BLACK);
         mCornerSize = array.getDimensionPixelSize(R.styleable.FlipClockView_digit_cornersSize, DensityUtils.dp2px(5));
         mDividerSize = array.getDimensionPixelSize(R.styleable.FlipClockView_digit_dividerSize, DensityUtils.dp2px(1));
+        mDividerColor = array.getColor(R.styleable.FlipClockView_digit_dividerColor, Color.BLACK);
         mBoardColor = array.getColor(R.styleable.FlipClockView_digit_boardColor, Color.WHITE);
         array.recycle();
         applyAttribute();
         initTime();
+        invalidate();
     }
 
     private void initTime() {
@@ -86,10 +89,33 @@ public class FlipClockView extends LinearLayout {
         int hourHigh = hour / 10;
         getDigitView(mDigitViews[1]).start(hourLow);
         getDigitView(mDigitViews[0]).start(hourHigh);
-        scheduleApplyTime();
     }
 
-    private void scheduleApplyTime() {
+    /********************************* init function end. *****************************************/
+
+    /********************************* inner function. ********************************************/
+
+    private DigitView getDigitView(@IdRes int id) {
+        return mRootView.findViewById(id);
+    }
+
+    private void applyAttribute() {
+        for (int id : mDigitViews) {
+            DigitView digitView = getDigitView(id);
+            digitView.setBoardColor(mBoardColor);
+            digitView.setCornerSize(mCornerSize);
+            digitView.setTextColor(mTextColor);
+            digitView.setTextSize(mTextSize);
+            digitView.setDividerSize(mDividerSize);
+            digitView.setDividerColor(mDividerColor);
+        }
+    }
+
+    /********************************* inner function end. ****************************************/
+
+    /********************************* expose function. *******************************************/
+
+    private void autoUpdate() {
         ScheduledExecutorService scheduled = Executors.newScheduledThreadPool(1);
         scheduled.scheduleAtFixedRate(() -> {
             Calendar calendar = Calendar.getInstance();
@@ -127,27 +153,38 @@ public class FlipClockView extends LinearLayout {
         }, 0, 1, TimeUnit.SECONDS);
     }
 
-    /********************************* init function end. *****************************************/
+    public void updateTime(int hour,int minute,int second){
 
-    /********************************* inner function. ********************************************/
+        int secLow = second % 10;
+        int secHigh = second / 10;
 
-    private DigitView getDigitView(@IdRes int id) {
-        return mRootView.findViewById(id);
-    }
+        int minLow = minute % 10;
+        int minHigh = minute / 10;
 
-    private void applyAttribute() {
-        for (int id : mDigitViews) {
-            DigitView digitView = getDigitView(id);
-            digitView.setBoardColor(mBoardColor);
-            digitView.setCornerSize(mCornerSize);
-            digitView.setTextColor(mTextColor);
-            digitView.setTextSize(mTextSize);
-            digitView.setDividerSize(mDividerSize);
-            if (getBackground() != null) {
-                digitView.setBackground(getBackground());
+        int hourLow = hour % 10;
+        int hourHigh = hour / 10;
+
+        post(() -> {
+            //设定秒钟
+            getDigitView(mDigitViews[5]).start(secLow);
+            if (secLow == 0) {
+                getDigitView(mDigitViews[4]).start(secHigh);
             }
-        }
+            // 设定分钟
+            if (second == 0) {
+                getDigitView(mDigitViews[3]).start(minLow);
+                if (minLow == 0) {
+                    getDigitView(mDigitViews[2]).start(minHigh);
+                }
+            }
+            //设定小时
+            if (second == 0 && minute == 0) {
+                getDigitView(mDigitViews[1]).start(hourLow);
+                getDigitView(mDigitViews[0]).start(hourHigh);
+            }
+        });
+
     }
 
-    /********************************* inner function end. ****************************************/
+    /********************************* expose function end. ***************************************/
 }

@@ -407,4 +407,12 @@ public class DateUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.getDefault());
         return simpleDateFormat.format(calendar.getTime());
     }
+
+    public static final String[] sWeek = new String[]
+            {"星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"};
+
+    public static String getWeek(int weekday) {
+        int weekly = weekday - 1 > 0 ? weekday - 1 : 7;
+        return sWeek[weekly - 1];
+    }
 }

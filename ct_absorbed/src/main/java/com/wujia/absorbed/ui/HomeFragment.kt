@@ -29,8 +29,6 @@ import com.wujia.todo.ct.base.ROUTER_ABSORBED
 @Route(path = ROUTER_ABSORBED)
 class HomeFragment : BaseMvvmFragment<AbsorbedViewModel, AbFragmentAbsorbedPagerBinding>() {
 
-    private var currentPosition = 0;
-
     companion object {
         @JvmStatic
         fun newInstance() =
@@ -54,7 +52,9 @@ class HomeFragment : BaseMvvmFragment<AbsorbedViewModel, AbFragmentAbsorbedPager
             CompassFragment.newInstance(),
             TimerFragment.newInstance()
         )
+
         binding.viewPager.adapter = object : FragmentStateAdapter(childFragmentManager, lifecycle) {
+
             override fun getItemCount(): Int = list.size
 
             override fun createFragment(position: Int): Fragment = list[position]
@@ -64,26 +64,9 @@ class HomeFragment : BaseMvvmFragment<AbsorbedViewModel, AbFragmentAbsorbedPager
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                currentPosition = position
+
             }
         })
-
-        binding.setClickListener {
-            when (it.id) {
-                R.id.btn_next -> {
-                    if (currentPosition <= list.size - 1) {
-                        val pos = currentPosition + 1
-                        binding.viewPager.setCurrentItem(pos, true)
-                    }
-                }
-                R.id.btn_previous -> {
-                    if (currentPosition <= list.size - 1 && currentPosition > 0) {
-                        val pos = currentPosition - 1
-                        binding.viewPager.setCurrentItem(pos, true)
-                    }
-                }
-            }
-        }
     }
 
     private fun initActionBar() {

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -21,32 +20,30 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="top" />
 
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuesday" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wednesday" />
+        </com.google.android.material.tabs.TabLayout>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize" />
+            android:layout_height="match_parent" />
 
-        <ImageView
-            android:id="@+id/btn_previous"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center|start"
-            android:padding="8dp"
-            android:onClick="@{clickListener}"
-            app:srcCompat="@drawable/ic_left_arrow"
-            tools:ignore="ContentDescription" />
-
-        <ImageView
-            android:id="@+id/btn_next"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center|end"
-            android:padding="8dp"
-            android:onClick="@{clickListener}"
-            app:srcCompat="@drawable/ic_right_arrow"
-            tools:ignore="ContentDescription" />
-
-
-    </FrameLayout>
+    </LinearLayout>
 </layout>
