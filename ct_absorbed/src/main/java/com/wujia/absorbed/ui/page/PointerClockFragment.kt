@@ -52,11 +52,11 @@ class PointerClockFragment :
                 val hourTime = SpannableStringBuilder(calendar[Calendar.HOUR_OF_DAY].toString())
                 val sizeSpan = RelativeSizeSpan(2f)
                 hourTime.append('h')
-                    .setSpan(sizeSpan,0,2,SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE)
+                    .setSpan(sizeSpan, 0, 2, SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE)
 
                 val minuteTime = SpannableStringBuilder(calendar[Calendar.MINUTE].toString())
                 minuteTime.append('m')
-                    .setSpan(sizeSpan,0,2,SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE)
+                    .setSpan(sizeSpan, 0, 2, SpannableStringBuilder.SPAN_INCLUSIVE_INCLUSIVE)
 
                 val dateTime = StringBuilder()
                 dateTime.append(calendar[Calendar.YEAR])

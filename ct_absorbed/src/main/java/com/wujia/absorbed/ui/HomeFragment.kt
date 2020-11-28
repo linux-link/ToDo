@@ -1,6 +1,9 @@
 package com.wujia.absorbed.ui
 
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -15,6 +18,7 @@ import com.wujia.absorbed.ui.page.TimerFragment
 import com.wujia.absorbed.viewmodel.AbsorbedViewModel
 import com.wujia.arch.utils.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmFragment
+import com.wujia.resource.dialog.MaterialDialogConfig
 import com.wujia.resource.popup.PPWindow
 import com.wujia.todo.ct.base.ACTION_DRAWER_LAYOUT
 import com.wujia.todo.ct.base.ROUTER_ABSORBED

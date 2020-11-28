@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="WhiteCommonText">
+        <item name="android:textSize">@dimen/text_normal_size</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="WhiteSmallText">
+        <item name="android:textSize">@dimen/text_small_size</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="GreySmallText">
+        <item name="android:textSize">@dimen/text_small_size</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>

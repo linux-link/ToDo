@@ -87,7 +87,7 @@ deps.bmob = 'cn.bmob.android:bmob-sdk:3.6.6'
 
 /**************************************************************************************************/
 deps.libs = [
-        ':lib_res', ':lib_ct_base', ':lib_arch'
+        ':lib_ui', ':lib_ct_base', ':lib_arch'
 ]
 
 deps.modules = [

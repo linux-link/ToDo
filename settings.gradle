@@ -1,5 +1,5 @@
 include ':ct_absorbed'
-include ':lib_res'
+include ':lib_ui'
 include ':lib_arch'
 include ':lib_ct_base'
 include ':ct_splash'

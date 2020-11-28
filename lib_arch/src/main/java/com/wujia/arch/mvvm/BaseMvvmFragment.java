@@ -26,6 +26,8 @@ import java.lang.reflect.Type;
 public abstract class BaseMvvmFragment<M extends BaseViewModel, V extends ViewDataBinding>
         extends BaseFragment {
 
+    public final String TAG = getClass().getSimpleName();
+
     private V mBinding;
     private M mViewModel;
 
