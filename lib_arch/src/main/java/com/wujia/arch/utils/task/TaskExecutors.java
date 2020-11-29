@@ -27,21 +27,24 @@ public final class TaskExecutors {
         private final AtomicInteger mCount = new AtomicInteger(1);
 
         public Thread newThread(@NonNull Runnable runnable) {
-            return new Thread(runnable, "WJ thread #" + mCount.getAndIncrement());
+            return new Thread(runnable, "WJ cache #" + mCount.getAndIncrement());
         }
     };
 
     private static final ThreadFactory IO_THREAD_FACTORY = new ThreadFactory() {
         @Override
         public Thread newThread(@NonNull Runnable runnable) {
-            return new Thread(runnable, "WJ io thread");
+            return new Thread(runnable, "WJ io");
         }
     };
 
     private static final ThreadFactory SCHEDULED_THREAD_FACTORY = new ThreadFactory() {
+
+        private final AtomicInteger mCount = new AtomicInteger(1);
+
         @Override
         public Thread newThread(@NonNull Runnable runnable) {
-            return new Thread(runnable, "WJ schedule thread");
+            return new Thread(runnable, "WJ schedule #" + mCount.getAndIncrement());
         }
     };
 

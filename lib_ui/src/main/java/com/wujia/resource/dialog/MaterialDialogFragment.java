@@ -19,7 +19,7 @@ import com.wujia.resource.databinding.FragmentMaterialDialogBinding;
  */
 public class MaterialDialogFragment extends BaseDialogFragment<FragmentMaterialDialogBinding> {
 
-    // Dialog config
+    // dialog config
     private final MaterialDialogConfig mDialogConfig;
 
     private MaterialDialogFragment(MaterialDialogConfig config) {
