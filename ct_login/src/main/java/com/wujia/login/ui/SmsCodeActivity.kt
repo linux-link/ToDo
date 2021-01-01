@@ -8,7 +8,7 @@ import com.wujia.login.R
 import com.wujia.login.databinding.LgActivitySmsCodeBinding
 import com.wujia.login.utils.LoginViewModelStore
 import com.wujia.login.widget.SmsCodeView
-import com.wujia.resource.button.StateButton
+import com.wujia.ui.button.StateButton
 import com.wujia.todo.ct.base.utils.CountDownTimerExt
 
 /**

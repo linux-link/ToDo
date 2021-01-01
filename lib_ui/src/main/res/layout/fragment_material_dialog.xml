@@ -11,7 +11,7 @@
 
         <variable
             name="dialogConfig"
-            type="com.wujia.resource.dialog.MaterialDialogConfig" />
+            type="com.wujia.ui.dialog.MaterialDialogConfig" />
 
         <import type="android.text.TextUtils" />
 

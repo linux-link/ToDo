@@ -9,7 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.wujia.arch.utils.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmActivity
 import com.wujia.arch.utils.AppLifecycle
-import com.wujia.resource.utils.StatusBar
+import com.wujia.ui.utils.StatusBar
 import com.wujia.todo.ct.base.ACTION_DRAWER_LAYOUT
 import com.wujia.todo.ct.base.ROUTER_ABSORBED
 import com.wujia.todo.main.R

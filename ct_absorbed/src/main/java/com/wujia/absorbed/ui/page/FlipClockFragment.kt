@@ -8,7 +8,7 @@ import com.wujia.absorbed.databinding.AbFragmentFlipClockBinding
 import com.wujia.absorbed.viewmodel.FlipClockViewModel
 import com.wujia.arch.mvvm.BaseMvvmFragment
 import com.wujia.arch.utils.task.TaskExecutors
-import com.wujia.resource.utils.DateUtils
+import com.wujia.ui.utils.DateUtils
 import java.util.*
 import java.util.concurrent.TimeUnit
 

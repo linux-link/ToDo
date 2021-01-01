@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.wujia.arch.utils.eventbus.LiveDataBus
 import com.wujia.arch.mvvm.BaseMvvmFragment
-import com.wujia.resource.popup.PPWindow
+import com.wujia.ui.popup.PPWindow
 import com.wujia.todo.ct.base.ACTION_DRAWER_LAYOUT
 import com.wujia.todo.main.R
 import com.wujia.todo.main.databinding.MainFragmentTodayPagerBinding

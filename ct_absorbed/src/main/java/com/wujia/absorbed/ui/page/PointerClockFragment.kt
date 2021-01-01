@@ -9,7 +9,7 @@ import com.wujia.absorbed.databinding.AbFragmentPointerClockBinding
 import com.wujia.absorbed.viewmodel.PointerClockViewModel
 import com.wujia.arch.mvvm.BaseMvvmFragment
 import com.wujia.arch.utils.task.TaskExecutors
-import com.wujia.resource.utils.DateUtils
+import com.wujia.ui.utils.DateUtils
 import java.util.*
 import java.util.concurrent.TimeUnit
 

@@ -11,7 +11,7 @@ import com.wujia.arch.mvvm.BaseMvvmActivity
 import com.wujia.login.R
 import com.wujia.login.databinding.LgActivityLoginBinding
 import com.wujia.login.utils.LoginViewModelStore
-import com.wujia.resource.button.StateButton
+import com.wujia.ui.button.StateButton
 
 /**
  * @author WJ.

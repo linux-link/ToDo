@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.page.FlipClockFragment">
 
-        <com.wujia.resource.widget.FlipClockView
+        <com.wujia.ui.widget.FlipClockView
             android:id="@+id/flip_clock"
             android:layout_width="0dp"
             android:layout_height="150dp"

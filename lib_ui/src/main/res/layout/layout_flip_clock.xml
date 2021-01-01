@@ -7,40 +7,40 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <com.wujia.resource.widget.DigitView
+    <com.wujia.ui.widget.DigitView
         android:id="@+id/hour_high"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
         android:layout_weight="1" />
 
-    <com.wujia.resource.widget.DigitView
+    <com.wujia.ui.widget.DigitView
         android:id="@+id/hour_low"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <com.wujia.resource.widget.DigitView
+    <com.wujia.ui.widget.DigitView
         android:id="@+id/min_high"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
         android:layout_weight="1" />
 
-    <com.wujia.resource.widget.DigitView
+    <com.wujia.ui.widget.DigitView
         android:id="@+id/min_low"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <com.wujia.resource.widget.DigitView
+    <com.wujia.ui.widget.DigitView
         android:id="@+id/sec_high"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
         android:layout_weight="1" />
 
-    <com.wujia.resource.widget.DigitView
+    <com.wujia.ui.widget.DigitView
         android:id="@+id/sec_low"
         android:layout_width="0dp"
         android:layout_height="match_parent"
