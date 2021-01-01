@@ -15,7 +15,7 @@ def addRepos(RepositoryHandler handler) {
     handler.maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin' }
 //    handler.google()
 //    handler.jcenter()
-    handler.maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
+//    handler.maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
 
 }
 
@@ -83,7 +83,7 @@ deps.glide = glide
 
 deps.gson = "com.google.code.gson:gson:2.8.6"
 deps.gradle = "com.android.tools.build:gradle:4.1.0"
-deps.bmob = 'cn.bmob.android:bmob-sdk:3.6.6'
+//deps.bmob = 'cn.bmob.android:bmob-sdk:3.6.6'
 
 /**************************************************************************************************/
 deps.libs = [
@@ -119,7 +119,7 @@ deps.dependencies = [
         deps.google.material,
 
         deps.arouter.api,
-        deps.bmob,
+//        deps.bmob,
 
         deps.glide.core
 ]

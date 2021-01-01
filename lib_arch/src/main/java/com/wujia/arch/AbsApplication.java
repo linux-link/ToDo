@@ -13,13 +13,13 @@ import com.wujia.arch.utils.AppLifecycle;
 import com.wujia.arch.utils.AppStackManager;
 
 /**
- * Abstract application.
+ * Base application.
  *
  * @author WuJia.
  * @version 1.0
  * @date 2020/9/1
  */
-public abstract class AbsApplication extends Application implements LifecycleObserver {
+public class AbsApplication extends Application implements LifecycleObserver {
 
     private static Application sApplication;
 
