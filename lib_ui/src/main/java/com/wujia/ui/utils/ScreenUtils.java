@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityGroup;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.Log;
@@ -35,11 +36,16 @@ public class ScreenUtils {
      * @param context
      * @return
      */
-    public static int getScreenWidth(Context context) {
+    public static int getDisplayWidthInPx(Context context) {
         WindowManager manager = (WindowManager) context
                 .getSystemService(Context.WINDOW_SERVICE);
-        Display display = manager.getDefaultDisplay();
-        return display.getWidth();
+        if (manager != null) {
+            Display display = manager.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            return size.x;
+        }
+        return 0;
     }
 
     /**
@@ -48,11 +54,16 @@ public class ScreenUtils {
      * @param context
      * @return
      */
-    public static int getScreenHeight(Context context) {
+    public static int getDisplayHeightInPx(Context context) {
         WindowManager manager = (WindowManager) context
                 .getSystemService(Context.WINDOW_SERVICE);
-        Display display = manager.getDefaultDisplay();
-        return display.getHeight();
+        if (manager != null) {
+            Display display = manager.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            return size.y;
+        }
+        return 0;
     }
 
     /**
@@ -61,7 +72,7 @@ public class ScreenUtils {
      * @param context
      * @return mStatusHeight
      */
-    public static int getStatusHeight(Context context) {
+    public static int getStatusHeightInPx(Context context) {
         int statusHeight = -1;
         try {
             int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");

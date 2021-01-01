@@ -1,5 +1,5 @@
 def builds = [:]
-builds.min = 21
+builds.min = 19
 builds.target = 30
 builds.compile = 30
 builds.buildTools = "30.0.1"

@@ -1,4 +1,4 @@
-package com.wujia.ui.tabs;
+package com.wujia.ui.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
