@@ -1,6 +1,6 @@
-//include ':lib_debug'
+include ':lib_network'//include ':lib_debug'
 include ':lib_ui'
-//include ':lib_arch'
+include ':lib_arch'
 //include ':lib_ct_base'
 //include ':ct_absorbed'
 //include ':ct_splash'
