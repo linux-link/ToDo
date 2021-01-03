@@ -1,6 +1,7 @@
 package com.wujia.absorbed.ui.page
 
 import android.os.Bundle
+import android.os.Looper
 import android.text.SpannableStringBuilder
 import android.text.style.RelativeSizeSpan
 import android.view.View
@@ -11,6 +12,8 @@ import com.wujia.arch.mvvm.BaseMvvmFragment
 import com.wujia.arch.utils.task.TaskExecutors
 import com.wujia.ui.utils.DateUtils
 import java.util.*
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 /**
@@ -41,7 +44,7 @@ class PointerClockFragment :
     }
 
     private fun initClock() {
-        TaskExecutors.getInstance().scheduledThread.scheduleAtFixedRate(
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(
             {
                 val calendar = Calendar.getInstance()
                 // 加一秒，解决显示延迟的问题
@@ -67,7 +70,7 @@ class PointerClockFragment :
                     .append(' ')
                     .append(DateUtils.getWeek(calendar[Calendar.DAY_OF_WEEK]))
 
-                TaskExecutors.getInstance().mainThread.execute {
+                TaskExecutors.getInstance().mainPost{
                     binding.pointerClock.updateTime(hour, minute, second)
                     binding.tvHourTime.text = hourTime
                     binding.tvMinuteTime.text = minuteTime

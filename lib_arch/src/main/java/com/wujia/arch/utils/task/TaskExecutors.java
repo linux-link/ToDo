@@ -3,6 +3,7 @@ package com.wujia.arch.utils.task;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public final class TaskExecutors {
 
     public static final String TAG = TaskExecutors.class.getSimpleName();
+    private static final TaskExecutors TASK_EXECUTORS = new TaskExecutors();
 
     private boolean mIsPause;
     private final ThreadPoolExecutor mPoolExecutor;
@@ -37,7 +39,11 @@ public final class TaskExecutors {
     private final Condition mPauseCondition;
     private final Handler mMainHandler = new Handler(Looper.getMainLooper());
 
-    public TaskExecutors() {
+    public static TaskExecutors getInstance() {
+        return TASK_EXECUTORS;
+    }
+
+    private TaskExecutors() {
         mPauseCondition = mLock.newCondition();
         int cpuCount = Runtime.getRuntime().availableProcessors();
         int corePoolSize = cpuCount + 1;
@@ -76,7 +82,7 @@ public final class TaskExecutors {
             @Override
             protected void afterExecute(Runnable r, Throwable t) {
                 super.afterExecute(r, t);
-                LogUtil.logD(TAG, "this thread priority is " + ((PriorityRunnable) r).mPriority);
+                Log.d(TAG, "this thread priority is " + ((PriorityRunnable) r).mPriority);
             }
         };
     }
@@ -106,7 +112,7 @@ public final class TaskExecutors {
         mLock.lock();
         try {
             mIsPause = true;
-            LogUtil.logD(TAG, "thread pool is paused");
+            Log.d(TAG, "thread pool is paused");
         } finally {
             mLock.unlock();
         }
@@ -120,7 +126,7 @@ public final class TaskExecutors {
         } finally {
             mLock.unlock();
         }
-        LogUtil.logD(TAG, "thread pool is resumed");
+        Log.d(TAG, "thread pool is resumed");
     }
 
     public abstract class Callable<T> implements Runnable {

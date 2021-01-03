@@ -1,4 +1,4 @@
-package com.wujia.debug;
+package com.wujia.support;
 
 import org.junit.Test;
 

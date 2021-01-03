@@ -1,21 +1,18 @@
 plugins {
     id 'com.android.library'
 }
-
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion builds.compile
+    buildToolsVersion builds.buildTools
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion builds.min
+        targetSdkVersion builds.target
+        versionCode builds.code
+        versionName builds.name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -29,10 +26,6 @@ android {
 }
 
 dependencies {
-
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation deps.androidx.appcompat
+    implementation deps.lifecycle.extensions
 }

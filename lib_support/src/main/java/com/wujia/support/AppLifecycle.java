@@ -1,4 +1,4 @@
-package com.wujia.arch.utils;
+package com.wujia.support;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;

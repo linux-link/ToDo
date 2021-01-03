@@ -74,6 +74,7 @@ deps.paging = paging
 
 def google = [:]
 google.material = 'com.google.android.material:material:1.2.1'
+google.gson='com.google.code.gson:gson:2.8.4'
 deps.google = google
 
 def glide = [:]
@@ -91,7 +92,7 @@ deps.gradle = "com.android.tools.build:gradle:4.1.0"
 
 /**************************************************************************************************/
 deps.libs = [
-        ':lib_ui', ':lib_ct_base', ':lib_arch'
+        ':lib_ui', ':lib_ct_base', ':lib_arch',':lib_support'
 ]
 
 deps.modules = [
@@ -121,6 +122,7 @@ deps.dependencies = [
 
         deps.paging.runtime,
         deps.google.material,
+        deps.google.gson,
 
         deps.arouter.api,
 //        deps.bmob,
