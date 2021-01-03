@@ -25,7 +25,14 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     implementation deps.androidx.appcompat
     implementation deps.lifecycle.extensions
+    implementation(name:'libbreakpad',ext:'aar')
 }

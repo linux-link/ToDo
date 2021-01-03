@@ -29,7 +29,7 @@ public class CrashHandler {
 
     public static final String TAG = CrashHandler.class.getSimpleName();
 
-    private final String CRASH_DIR = "CrashDir";
+    public String CRASH_DIR = "CrashDir";
 
     private static final CrashHandler CRASH_HANDLER = new CrashHandler();
 
@@ -39,6 +39,10 @@ public class CrashHandler {
 
     public static CrashHandler getInstance() {
         return CRASH_HANDLER;
+    }
+
+    public void init(String dir) {
+        CRASH_DIR = dir;
     }
 
     public File[] crashFiles() {
