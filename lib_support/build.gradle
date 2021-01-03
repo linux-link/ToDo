@@ -34,5 +34,7 @@ repositories {
 dependencies {
     implementation deps.androidx.appcompat
     implementation deps.lifecycle.extensions
+    implementation deps.androidx.recyclerview
+    implementation deps.google.gson
     implementation(name:'libbreakpad',ext:'aar')
 }
