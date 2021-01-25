@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.devio.hi.library.R;
+import com.wujia.support.R;
 
 import java.util.ArrayList;
 import java.util.List;

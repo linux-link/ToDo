@@ -10,7 +10,7 @@ class LauncherActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startContainerActivity(HomeFragment::class.java.canonicalName)
-        FpsMonitor.getInstance().toggle()
+        FpsMonitor.getInstance().autoToggle()
     }
 
 }

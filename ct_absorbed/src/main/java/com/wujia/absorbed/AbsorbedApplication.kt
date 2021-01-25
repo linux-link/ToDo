@@ -1,6 +1,7 @@
 package com.wujia.absorbed
 
 import android.app.Application
+import com.wujia.support.fps.FpsMonitor
 import com.wujia.todo.ct.base.BaseApplication
 
 class AbsorbedApplication : BaseApplication() {

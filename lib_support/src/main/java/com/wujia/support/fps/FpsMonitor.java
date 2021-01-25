@@ -31,4 +31,8 @@ public class FpsMonitor {
         mFpsView.toggle();
     }
 
+    public void autoToggle(){
+        mFpsView.autoToggle();
+    }
+
 }

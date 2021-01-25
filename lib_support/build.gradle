@@ -36,5 +36,5 @@ dependencies {
     implementation deps.lifecycle.extensions
     implementation deps.androidx.recyclerview
     implementation deps.google.gson
-    implementation(name:'libbreakpad',ext:'aar')
+//    api(name: 'libbreakpad', ext: 'aar')
 }

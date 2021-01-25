@@ -72,6 +72,12 @@ android {
 
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     kapt deps.arouter.compiler
     implementation deps.dependencies
@@ -79,5 +85,3 @@ dependencies {
         implementation project(path: it)
     }
 }
-
-repositories { flatDir { dirs 'libs' } }

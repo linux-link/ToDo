@@ -12,6 +12,11 @@ import android.view.LayoutInflater;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ProcessLifecycleOwner;
+
 import com.wujia.support.AppGlobal;
 import com.wujia.support.R;
 
@@ -83,7 +88,7 @@ public class FpsView {
         );
     }
 
-    void toggle() {
+    public void toggle() {
         if (mIsPlaying) {
             stop();
         } else {
@@ -91,7 +96,25 @@ public class FpsView {
         }
     }
 
+    public void autoToggle() {
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(new AppLifecycle());
+    }
+
     void addListener(FpsMonitor.FpsListener listener) {
         frameMonitor.addListener(listener);
     }
+
+    public class AppLifecycle implements LifecycleObserver {
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+        public void onAppResume() {
+            play();
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+        public void onAppPause() {
+            stop();
+        }
+    }
+
 }

@@ -2,8 +2,6 @@ package com.wujia.support.crash;
 
 import com.wujia.support.AppGlobal;
 
-import org.devio.as.proj.libbreakpad.NativeCrashHandler;
-
 import java.io.File;
 
 public class CrashManager {
@@ -22,7 +20,7 @@ public class CrashManager {
         File nativeCrashDir = getNativeCrashDir();
 
         CrashHandler.getInstance().init(javaCrashDir.getAbsolutePath());
-        NativeCrashHandler.init(nativeCrashDir.getAbsolutePath());
+//        NativeCrashHandler.init(nativeCrashDir.getAbsolutePath());
     }
 
     private File getJavaCrashDir() {
